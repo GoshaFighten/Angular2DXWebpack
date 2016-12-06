@@ -1,4 +1,13 @@
-<main>
-    <h1>Hello from Angular 2 App with Webpack</h1>
-    <img src="../../public/images/angular.png">
-</main>
+<dx-data-grid [dataSource]="orders" [summary]="{
+        totalItems: [{column: 'shipCity', summaryType: 'count'}],
+        groupItems: [{ summaryType: 'count' }]
+}">
+    <dxi-column dataField="orderID"></dxi-column>
+    <dxi-column dataField="orderDate" dataType="date"></dxi-column>
+    <dxi-column dataField="customerName"></dxi-column>
+    <dxi-column dataField="shipCountry"></dxi-column>
+    <dxi-column dataField="shipCity"></dxi-column>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-header-filter [visible]="true"></dxo-header-filter>
+    <dxo-group-panel [visible]="true"></dxo-group-panel>
+</dx-data-grid>
