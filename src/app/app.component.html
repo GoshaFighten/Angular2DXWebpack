@@ -1,13 +1,17 @@
-<dx-data-grid [dataSource]="orders" [summary]="{
-        totalItems: [{column: 'shipCity', summaryType: 'count'}],
-        groupItems: [{ summaryType: 'count' }]
-}">
+<dx-data-grid [dataSource]="orders" [height]="600" [showBorders]="true">
     <dxi-column dataField="orderID"></dxi-column>
     <dxi-column dataField="orderDate" dataType="date"></dxi-column>
     <dxi-column dataField="customerName"></dxi-column>
-    <dxi-column dataField="shipCountry"></dxi-column>
-    <dxi-column dataField="shipCity"></dxi-column>
+    <dxi-column dataField="shipCountry" [setCellValue]="setShipCountryValue" [lookup]="shipCountryLookupConfig"></dxi-column>
+    <dxi-column dataField="shipCity" [lookup]="shipCityLookupConfig"></dxi-column>
     <dxo-filter-row [visible]="true"></dxo-filter-row>
     <dxo-header-filter [visible]="true"></dxo-header-filter>
     <dxo-group-panel [visible]="true"></dxo-group-panel>
+    <dxo-editing [allowAdding]="true" [allowDeleting]="true" [allowUpdating]="true"></dxo-editing>
+    <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+    <dxo-summary>
+        <dxi-total-item column="orderDate" summaryType="min"></dxi-total-item>
+        <dxi-group-item column="shipCity" summaryType="count"></dxi-group-item>
+        <dxi-group-item summaryType="count"></dxi-group-item>
+    </dxo-summary>
 </dx-data-grid>
